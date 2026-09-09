@@ -15,7 +15,13 @@ Repositori ini mendokumentasikan solusi infrastruktur mandiri untuk mengatasi ke
 ---
 
 ## 1. Latar Belakang & Permasalahan
-* **Skenario:** Sebuah perusahaan e-commerce dengan platform berbasis CMS Magento/PrestaShop mengalami lonjakan trafik hingga 10.000 user aktif secara bersamaan akibat kampanye diskon besar-besaran.
+* **Skenario:** Sebuah perusahaan e-commerce baru saja meluncurkan kampanye diskon besar
+besaran. Berdasarkan prediksi tim pemasaran, situs web yang berjalan di atas CMS Magento 
+dan PrestaShop milik perusahaan akan menerima lonjakan trafik hingga 10.000 user aktif 
+secara bersamaan.
+Saat ini, server sering mengalami down karena beban kerja yang hanya bertumpu pada 
+satu VM dengan resource XS (Ram 2GB, CPU 2 Core & Storage 40GB). Anda ditugaskan untuk memberikan solusi terbaik agar kendala 
+tersebut dapat teratasi dengan seefisien mungkin. 
 * **Kendala Awal:** Server sering mengalami down atau kegagalan layanan karena beban kerja terpusat secara tunggal (Single Point of Failure) pada satu Virtual Machine (VM) dengan spesifikasi resource XS.
 * **Tujuan:** Merancang solusi infrastruktur yang andal, efisien, dan tahan banting untuk mendistribusikan beban kerja serta mengamankan sistem di bawah tekanan trafik tinggi.
 
@@ -44,6 +50,17 @@ Repositori ini mendokumentasikan solusi infrastruktur mandiri untuk mengatasi ke
 * **Backend Nodes (Kilat VPS S1 & S2):** 
   * Spesifikasi: 4 vCPU, 4 GB RAM, 70 GB SSD per node.
   * Peruntukan: Menjalankan Nginx + PHP-FPM, layanan *caching* lokal Varnish, sinkronisasi direktori media via GlusterFS, serta engine database mandiri berbasis Galera Cluster.
+* **Service Version:**
+  * Oprating system: Ubuntu 24.04 (Noble)
+  * Database: MariaDB 10.11 & Galera 4.26
+  * Webserver: Nginx 1.24
+  * PHP-FPM: 8.4 (Magento) & 8.1 (Prestashop)
+  * File system: GlusterFS 11.1
+  * CMS: Magento 2.4.9 & Prestashop 8.1.7
+  * Opensearch: 3.x
+  * Cache management: Varnish 7.1.1
+  * Proxy: HAProxy 2.8
+  * Certbot: 2.9
 
 ---
 
