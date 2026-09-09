@@ -72,6 +72,7 @@ Optimalisasi performa dan keamanan diterapkan secara menyeluruh mencakup level O
 * **Nginx Performance Tuning:** Mengoptimalkan jumlah *worker_processes*, *worker_connections*, mengaktifkan *sendfile*, *tcp_nopush*, *tcp_nodelay*, serta mengatur *keepalive_timeout* untuk efisiensi transfer data web.
 * **PHP-FPM Performance Tuning:** Mengatur mode manajemen proses (`pm = dynamic` atau `pm = static`), penyesuaian jumlah *pm.max_children*, *pm.start_servers*, *pm.min_spare_servers*, dan *pm.max_spare_servers* agar penggunaan memori RAM tetap terjaga optimal saat menangani eksekusi skrip e-commerce yang masif.
 * **Firewall & Kernel OS Tuning:** Menyesuaikan parameter kernel (`sysctl.conf`) serta batas maksimal deskriptor file (`nofile`) agar sistem mampu menangani puluhan ribu koneksi soket secara bersamaan.
+* _Hasil tunning dan Konfigurasi tambahan di lampirkan di folder **/configs**. Hanya melampirkan baris baris yang perlu di ubah/ditambahkan._
 
 ---
 
