@@ -31,7 +31,7 @@ tersebut dapat teratasi dengan seefisien mungkin.
 ![Topologi Solusi](assets/topologi-ha.png)
 
 * **Edge / Load Balancing Layer (Kilat VPS XS):** 
-  * Menggunakan **HAProxy** sebagai *Reverse Proxy* dan *Load Balancer* utama yang langsung menghadap ke IP Publik.
+  * Menggunakan **HAProxy** sebagai *Reverse Proxy* dan *Load Balancer* utama yang langsung menghadap ke IP Publik dengan algoritma Round Robin.
   * Dilengkapi **Let's Encrypt SSL** untuk enkripsi lalu lintas HTTPS yang aman bagi pengguna.
   * Dilengkapi **Garbd** (*Galera Arbitrator daemon*) sebagai penengah voting kluster database tanpa harus memakan resource server beban penuh.
 * **Application & Storage Layer (Kilat VPS S1 & S2):**
@@ -72,7 +72,8 @@ Optimalisasi performa dan keamanan diterapkan secara menyeluruh mencakup level O
 * **Nginx Performance Tuning:** Mengoptimalkan jumlah *worker_processes*, *worker_connections*, mengaktifkan *sendfile*, *tcp_nopush*, *tcp_nodelay*, serta mengatur *keepalive_timeout* untuk efisiensi transfer data web.
 * **PHP-FPM Performance Tuning:** Mengatur mode manajemen proses (`pm = dynamic` atau `pm = static`), penyesuaian jumlah *pm.max_children*, *pm.start_servers*, *pm.min_spare_servers*, dan *pm.max_spare_servers* agar penggunaan memori RAM tetap terjaga optimal saat menangani eksekusi skrip e-commerce yang masif.
 * **Firewall & Kernel OS Tuning:** Menyesuaikan parameter kernel (`sysctl.conf`) serta batas maksimal deskriptor file (`nofile`) agar sistem mampu menangani puluhan ribu koneksi soket secara bersamaan.
-* _Hasil tunning dan Konfigurasi tambahan di lampirkan di folder **/configs**. Hanya melampirkan baris baris yang perlu di ubah/ditambahkan._
+
+_Hasil tunning dan Konfigurasi tambahan di lampirkan di folder **/configs**. Hanya melampirkan baris baris yang perlu di ubah/ditambahkan._
 
 ---
 
@@ -86,4 +87,4 @@ Optimalisasi performa dan keamanan diterapkan secara menyeluruh mencakup level O
 ---
 
 ## 6. Kesimpulan
-Implementasi arsitektur High Availability dengan pemisahan beban Varnish ke setiap *web node*, efisiensi kluster database Galera, sinkronisasi file GlusterFS, pengamanan *Anti-DDoS* & SSL Let's Encrypt di HAProxy, serta *performance tuning* komprehensif pada OS, HAProxy, Nginx, dan PHP terbukti mampu mengeliminasi titik kegagalan tunggal (SPOF), menjaga stabilitas layanan e-commerce, serta memastikan sistem tetap responsif melayani 10.000+ pengguna aktif secara bersamaan.
+Implementasi arsitektur High Availability dengan pemisahan beban Varnish ke setiap *web node*, efisiensi kluster database Galera, sinkronisasi file GlusterFS, pengamanan *Anti-DDoS* & SSL Let's Encrypt di HAProxy, serta *performance tuning* komprehensif pada OS, HAProxy, Nginx, dan PHP terbukti mampu mengeliminasi titik kegagalan tunggal (SPOF), menjaga stabilitas layanan e-commerce, serta memastikan sistem tetap responsif melayani 10.000+ pengguna aktif secara bersamaan. Pengujian proyek ini dilakukan menggunakan _tools_ **Apache Benchmark** dengan jumlah user 10.000 dan menghasilkan 0 failed untuk pengujian masing masing CMS e-commerce.
